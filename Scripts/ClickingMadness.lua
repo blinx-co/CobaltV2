@@ -7,6 +7,10 @@ getgenv().tap = false
 getgenv().rebirth = false
 getgenv().egg = false
 
+getgenv().eggType = nil
+
+win.GuiKeybind(Enum.KeyCode.RightShift)
+
 function doTap()
     spawn(function()
         while getgenv().tap == true do
@@ -61,8 +65,12 @@ end)
 win.CreateToggle("Auto Hatch", function(bool)
     getgenv().egg = bool
     if bool then 
-        doEgg('basic')
+        doEgg(getgenv().eggType)
     end
+end)
+
+win.CreateTextBox("Egg Type", function(v)
+    getgenv().eggType = v
 end)
 
 function teleportTo(a)
