@@ -35,6 +35,7 @@ lib["CreateWindow"] = function(title, accent)
 	mainLayout.Name = "mainLayout"
 	mainLayout.Parent = main
 	mainLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	mainLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
 	mainTitle.Name = "mainTitle"
 	mainTitle.Parent = main
@@ -243,77 +244,92 @@ lib["CreateWindow"] = function(title, accent)
 		list = list or {}
 		text = text or ""
 		
-		resize(29)
+		resize(30)
 		
-		local dropYSize = MainSize + 10
+		local dropYSize = 0
 		local isDropped = false
 		
 		local dropdown = Instance.new("Frame")
-		local dropdownBox = Instance.new("Frame")
-		local dropdownMain = Instance.new("Frame")
-		local dropdownMainLayout = Instance.new("UIListLayout")
-		local dropdownMainCurrentOption = Instance.new("TextLabel")
-		local dropdownBoxActivator = Instance.new("TextButton")
 		local dropdownState = Instance.new("TextLabel")
 		local dropdownStatePadding = Instance.new("UIPadding")
+		local dropdownButton = Instance.new("TextButton")
+		local dropdownDefault = Instance.new("TextLabel")
+		local dropdownLayout = Instance.new("UIListLayout")
 		
 		dropdown.Name = "dropdown"
 		dropdown.Parent = main
-		dropdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		dropdown.BackgroundTransparency = 1.000
-		dropdown.Position = UDim2.new(0, 0, 0.29756099, 0)
-		dropdown.Size = UDim2.new(0, 190, 0, 29)
+		dropdown.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		dropdown.BorderColor3 = Color3.fromRGB(56, 56, 56)
+		dropdown.Position = UDim2.new(0.0289473683, 0, 0.439024389, 0)
+		dropdown.Size = UDim2.new(0, 179, 0, 20)
+		dropdown.ClipsDescendants = true
 
-		dropdownBox.Name = "dropdownBox"
-		dropdownBox.Parent = dropdown
-		dropdownBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-		dropdownBox.BackgroundTransparency = 1.000
-		dropdownBox.BorderColor3 = Color3.fromRGB(56, 56, 56)
-		dropdownBox.Position = UDim2.new(0.018421052, 0, 0.155172408, 0)
-		dropdownBox.Size = UDim2.new(0, 179, 0, 20)
+		dropdownState.Name = "dropdownState"
+		dropdownState.Parent = dropdown
+		dropdownState.AnchorPoint = Vector2.new(0.5, 0.5)
+		dropdownState.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		dropdownState.BackgroundTransparency = 1.000
+		dropdownState.Position = UDim2.new(0.5, 0, 0.5, 0)
+		dropdownState.Size = UDim2.new(1, 0, 1, 0)
+		dropdownState.Font = Enum.Font.Roboto
+		dropdownState.Text = "v"
+		dropdownState.TextColor3 = Color3.fromRGB(255, 255, 255)
+		dropdownState.TextSize = 14.000
+		dropdownState.TextXAlignment = Enum.TextXAlignment.Right
 
-		dropdownMain.Name = "dropdownMain"
-		dropdownMain.Parent = dropdownBox
-		dropdownMain.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-		dropdownMain.BorderColor3 = Color3.fromRGB(56, 56, 56)
-		dropdownMain.ClipsDescendants = true
-		dropdownMain.Position = UDim2.new(0.011173184, 0, 0, 0)
-		dropdownMain.Size = UDim2.new(0, 179, 0, 23)
+		dropdownStatePadding.Name = "dropdownStatePadding"
+		dropdownStatePadding.Parent = dropdownState
+		dropdownStatePadding.PaddingRight = UDim.new(0, 3)
 
-		dropdownMainLayout.Name = "dropdownMainLayout"
-		dropdownMainLayout.Parent = dropdownMain
-		dropdownMainLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		dropdownMainLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		dropdownMainLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+		dropdownButton.Name = "dropdownButton"
+		dropdownButton.Parent = dropdownState
+		dropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		dropdownButton.BackgroundTransparency = 1.000
+		dropdownButton.Position = UDim2.new(-0.0105263162, 0, 0.137931034, 0)
+		dropdownButton.Size = UDim2.new(1, 0, 1, 0)
+		dropdownButton.Font = Enum.Font.SourceSans
+		dropdownButton.Text = ""
+		dropdownButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+		dropdownButton.TextSize = 14.000
 
-		dropdownMainCurrentOption.Name = "dropdownMainCurrentOption"
-		dropdownMainCurrentOption.Parent = dropdownMain
-		dropdownMainCurrentOption.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
-		dropdownMainCurrentOption.BorderColor3 = Color3.fromRGB(56, 56, 56)
-		dropdownMainCurrentOption.Size = UDim2.new(1, 0, 0, 25)
-		dropdownMainCurrentOption.Font = Enum.Font.Roboto
-		dropdownMainCurrentOption.Text = ""
-		dropdownMainCurrentOption.TextColor3 = Color3.fromRGB(188, 188, 188)
-		dropdownMainCurrentOption.TextSize = 14.000
+		dropdownDefault.Name = "dropdownDefault"
+		dropdownDefault.Parent = dropdownState
+		dropdownDefault.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		dropdownDefault.BackgroundTransparency = 1.000
+		dropdownDefault.Size = UDim2.new(1.03468204, 0, 1, 0)
+		dropdownDefault.Font = Enum.Font.Roboto
+		dropdownDefault.Text = text
+		dropdownDefault.TextColor3 = Color3.fromRGB(255, 255, 255)
+		dropdownDefault.TextSize = 14.000
 
-		dropdownBoxActivator.Name = "dropdownBoxActivator"
-		dropdownBoxActivator.Parent = dropdown
-		dropdownBoxActivator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		dropdownBoxActivator.BackgroundTransparency = 1.000
-		dropdownBoxActivator.Position = UDim2.new(-0.0105263162, 0, 0.137931034, 0)
-		dropdownBoxActivator.Size = UDim2.new(1, 0, 1, 0)
-		dropdownBoxActivator.Font = Enum.Font.SourceSans
-		dropdownBoxActivator.Text = ""
-		dropdownBoxActivator.TextColor3 = Color3.fromRGB(0, 0, 0)
-		dropdownBoxActivator.TextSize = 14.000
-		dropdownBoxActivator.MouseButton1Click:Connect(function()
+		dropdownLayout.Name = "dropdownLayout"
+		dropdownLayout.Parent = dropdown
+		dropdownLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		
+		local function close(state)
+			state = false
+			main.ClipsDescendants = true
+			dropdown.Size = UDim2.new(0,179,0,20)
+			dropdownState.Text = "^"
+		end
+		
+		local function open(state)
+			state = true
+			main.ClipsDescendants = false
+			dropdown.Size = UDim2.new(0,179,0, dropYSize)
+			dropdownState.Text = "v"
+		end
+		
+		dropdownButton.MouseButton1Click:Connect(function()
 			if isDropped then
 				isDropped = false
-				dropdownMain.Size = UDim2.new(0,179,0,25)
+				main.ClipsDescendants = true
+				dropdown.Size = UDim2.new(0,179,0,20)
 				dropdownState.Text = "^"
 			else
 				isDropped = true
-				dropdownMain.Size = UDim2.new(0,179,0, dropYSize)
+				main.ClipsDescendants = false
+				dropdown.Size = UDim2.new(0,179,0, dropYSize)
 				dropdownState.Text = "v"
 			end
 		end)
@@ -335,31 +351,34 @@ lib["CreateWindow"] = function(title, accent)
 		dropdownStatePadding.PaddingRight = UDim.new(0, 6)
 		
 		for i, v in next, list do
-			local dropdownMainOption = Instance.new("TextLabel")
-			local dropdownMainOptionButton = Instance.new("TextButton")
+			local option = Instance.new("TextLabel")
+			local optionButton = Instance.new("TextButton")
 
-			dropdownMainOption.Name = "dropdownMainOption"
-			dropdownMainOption.Parent = dropdownMain
-			dropdownMainOption.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
-			dropdownMainOption.BorderColor3 = Color3.fromRGB(56, 56, 56)
-			dropdownMainOption.Size = UDim2.new(1, 0, 0, 25)
-			dropdownMainOption.Font = Enum.Font.Roboto
-			dropdownMainOption.Text = v
-			dropdownMainOption.TextColor3 = Color3.fromRGB(255, 255, 255)
-			dropdownMainOption.TextSize = 14.000
+			option.Name = "option"
+			option.Parent = dropdown
+			option.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
+			option.BorderColor3 = Color3.fromRGB(56, 56, 56)
+			option.Position = UDim2.new(0, 0, 1, 0)
+			option.Size = UDim2.new(0, 179, 0, 20)
+			option.Font = Enum.Font.SourceSans
+			option.Text = v
+			option.TextColor3 = Color3.fromRGB(200, 200, 200)
+			option.TextSize = 14.000
 
-			dropdownMainOptionButton.Name = "dropdownMainOptionButton"
-			dropdownMainOptionButton.Parent = dropdownMainOption
-			dropdownMainOptionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			dropdownMainOptionButton.BackgroundTransparency = 1.000
-			dropdownMainOptionButton.Size = UDim2.new(1, 0, 1, 0)
-			dropdownMainOptionButton.Font = Enum.Font.SourceSans
-			dropdownMainOptionButton.Text = ""
-			dropdownMainOptionButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-			dropdownMainOptionButton.TextSize = 14.000
-
-			dropdownMainOptionButton.MouseButton1Click:Connect(function()
-				dropdownMainCurrentOption.Text = v
+			optionButton.Name = "optionButton"
+			optionButton.Parent = option
+			optionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			optionButton.BackgroundTransparency = 1.000
+			optionButton.Size = UDim2.new(1, 0, 1, 0)
+			optionButton.Font = Enum.Font.Roboto
+			optionButton.Text = ""
+			optionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			optionButton.TextSize = 14.000
+			
+			dropYSize = dropYSize + 20
+			
+			optionButton.MouseButton1Click:Connect(function()
+				dropdownDefault.Text = v
 				callback(v)
 			end)
 		end
