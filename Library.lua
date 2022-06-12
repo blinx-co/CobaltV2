@@ -47,7 +47,8 @@ lib["CreateWindow"] = function(title, accent)
 	mainTitle.LineHeight = 0.900
 	mainTitle.Text = title
 	mainTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-	mainTitle.TextSize = 20.000
+	mainTitle.TextXAlignment = Enum.TextXAlignment.Center
+	mainTitle.TextSize = 17.000
 
 	mainAccent.Name = "mainAccent"
 	mainAccent.Parent = mainTitle
