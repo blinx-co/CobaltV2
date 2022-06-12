@@ -10,6 +10,8 @@ lib["CreateWindow"] = function(title, accent)
 	local mainStatusPadding = Instance.new("UIPadding")
 	local mainStatusButton = Instance.new("TextButton")
 	
+	warn("UI Library created by blinx <3")
+	
 	local MainSize = 0
 	
 	local function resize(val)
