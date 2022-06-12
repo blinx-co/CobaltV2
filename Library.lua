@@ -18,9 +18,18 @@ lib["CreateWindow"] = function(title, accent)
 	
 	resize(32)
 	
-	cobalt.Name = "cobalt"
-	cobalt.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	cName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
+	
+	cobalt.Name = cName
+	cobalt.Parent = game.CoreGui
 	cobalt.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	
+	
+	for i,v in pairs(game.CoreGui:GetChildren()) do
+        if v:IsA("ScreenGui") and v.Name == cName then
+            	v:Destroy()
+            end
+	end
 
 	main.Name = "main"
 	main.Parent = cobalt
