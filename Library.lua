@@ -102,6 +102,23 @@ lib["CreateWindow"] = function(title, accent)
 	main.Size = UDim2.new(0, 190, 0, MainSize)
 	
 	local control = {}
+	local uis = game:GetService("UserInputService")
+	local showing = true
+	local bind = Enum.KeyCode.RightShift
+	
+	control["GuiKeybind"] = function(bind)
+		uis.InputBegan:Connect(function(i)
+			if i.KeyCode == bind then
+				if showing then
+					showing = false
+					main.Visible = false
+				else
+					showing = true
+					main.Visible = true
+				end
+			end
+		end)
+	end
 	
 	control["DestroyGui"] = function()
 		warn("Destroying Gui...")
