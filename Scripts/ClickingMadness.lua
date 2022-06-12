@@ -5,6 +5,8 @@ local p = game:GetService("ReplicatedStorage").Aero.AeroRemoteServices
 
 getgenv().autofarm = false;
 getgenv().autorebirth = false;
+getgenv().buyEgg = false;
+
 
 function doTap()
     spawn(function()
@@ -28,6 +30,16 @@ function doRebirth(amount)
     end) 
 end
 
+function doEgg(type)
+    spawn(function()
+    while wait() do
+        if not buyEgg then
+            break
+        end
+        ars.EggService.Purchase:FireServer(type)
+    end
+end)
+
 win.CreateButton("Destroy GUI", function()
     win.DestroyGui()    
 end)
@@ -50,6 +62,13 @@ win.CreateButton("Rage", function()
     game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.BeastModeService.Begin:FireServer()
 end)
 
+win.CreateToggle("Auto Hatch", function(bool)
+    getgenv().buyEgg = bool
+    if bool then
+        doEgg('basic')
+    end
+end)
+
 function teleportTo(a)
     local plr = game.Players.LocalPlayer;
     if plr.Character then
@@ -65,7 +84,7 @@ end
 
 local selectedWorld;
 
-win.CreateDropdown("Worlds", {"Lava","Desert","Ocean","Winter","Toxic","Candy","Forest","Storm","Blocks","Space","Dominus","Infinity","Future","City","Moon","Fire"},function(value)
+win.CreateDropdown("Worlds", {"Lava","Desert","Ocean","Winter","Toxic","Candy","Forst","Storm","Blocks","Space","Dominus","Infinity","Future","City","Moon","Fire"},function(value)
     local plr = game.Players.LocalPlayer
     plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Worlds[value].Teleport.CFrame
 end)
