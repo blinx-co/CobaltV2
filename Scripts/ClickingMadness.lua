@@ -62,13 +62,6 @@ win.CreateButton("Rage", function()
     game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.BeastModeService.Begin:FireServer()
 end)
 
-win.CreateToggle("Auto Hatch", function(bool)
-    getgenv().buyEgg = bool
-    if bool then
-        doEgg('basic')
-    end
-end)
-
 function teleportTo(a)
     local plr = game.Players.LocalPlayer;
     if plr.Character then
