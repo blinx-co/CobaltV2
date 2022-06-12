@@ -27,8 +27,8 @@ lib["CreateWindow"] = function(title, accent)
 	
 	for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == cName then
-            	v:Destroy()
-            end
+            print("Gui Loaded")
+        end
 	end
 
 	main.Name = "main"
@@ -393,7 +393,7 @@ lib["CreateWindow"] = function(title, accent)
 			end)
 		end
 	end
-	
+
 	return control
 end
 
