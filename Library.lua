@@ -109,6 +109,12 @@ lib["CreateWindow"] = function(title, accent)
 	
 	local control = {}
 	
+	control["DestroyGui"] = function()
+		warn("Destroying Gui...")
+		wait(.1)
+		main:Destroy()
+	end
+	
 	control["CreateButton"] = function(text, callback)
 		local callback = callback or function() end
 		local button = Instance.new("Frame")
