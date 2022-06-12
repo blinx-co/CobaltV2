@@ -65,7 +65,7 @@ end
 
 local selectedWorld;
 
-win.CreateDropdown("Worlds", {"Lava","Desert","Ocean","Winter","Toxic","Candy","Forst","Storm","Blocks","Space","Dominus","Infinity","Future","City","Moon","Fire"},function(value)
+win.CreateDropdown("Worlds", {"Lava","Desert","Ocean","Winter","Toxic","Candy","Forest","Storm","Blocks","Space","Dominus","Infinity","Future","City","Moon","Fire"},function(value)
     local plr = game.Players.LocalPlayer
     plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Worlds[value].Teleport.CFrame
 end)
