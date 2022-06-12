@@ -263,6 +263,7 @@ lib["CreateWindow"] = function(title, accent)
 		dropdown.Position = UDim2.new(0.0289473683, 0, 0.439024389, 0)
 		dropdown.Size = UDim2.new(0, 179, 0, 20)
 		dropdown.ClipsDescendants = true
+		dropdown.ZIndex = 5555555
 
 		dropdownState.Name = "dropdownState"
 		dropdownState.Parent = dropdown
