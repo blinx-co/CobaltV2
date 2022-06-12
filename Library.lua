@@ -21,14 +21,14 @@ lib["CreateWindow"] = function(title, accent)
 	cName = title or "Library"
 	
 	cobalt.Name = cName
-	cobalt.Parent = game.CoreGui
+	cobalt.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	cobalt.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	
 	
 	for i,v in pairs(game.CoreGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == cName then
-            print(cname.." Loaded!")
-        end
+            	print(cname.." Loaded!")
+            end
 	end
 
 	main.Name = "main"
