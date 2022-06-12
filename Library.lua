@@ -10,8 +10,6 @@ lib["CreateWindow"] = function(title, accent)
 	local mainStatusPadding = Instance.new("UIPadding")
 	local mainStatusButton = Instance.new("TextButton")
 	
-	warn("UI Library created by blinx <3")
-	
 	local MainSize = 0
 	
 	local function resize(val)
@@ -19,19 +17,11 @@ lib["CreateWindow"] = function(title, accent)
 	end
 	
 	resize(32)
+	local status = false
 	
-	cName = title or "Library"
-	
-	cobalt.Name = cName
+	cobalt.Name = "cobalt"
 	cobalt.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	cobalt.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	
-	
-	for i,v in pairs(game.CoreGui:GetChildren()) do
-        if v:IsA("ScreenGui") and v.Name == cName then
-            	print(cname.." Loaded!")
-            end
-	end
 
 	main.Name = "main"
 	main.Parent = cobalt
@@ -55,7 +45,7 @@ lib["CreateWindow"] = function(title, accent)
 	mainTitle.Size = UDim2.new(0, 190, 0, 32)
 	mainTitle.Font = Enum.Font.Code
 	mainTitle.LineHeight = 0.900
-	mainTitle.Text = cName
+	mainTitle.Text = title
 	mainTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	mainTitle.TextSize = 20.000
 
@@ -68,14 +58,16 @@ lib["CreateWindow"] = function(title, accent)
 	
 	local state = false
 	local function miniClose()
-		if state == false then
-			state = true
-			mainStatus.Text = "+"
-			game:GetService("TweenService"):Create(main, TweenInfo.new(.1), {Size = UDim2.new(0,190,0,MainSize)}):Play()
-		elseif state == true then
-			state = false
-			mainStatus.Text = "-"
-			game:GetService("TweenService"):Create(main, TweenInfo.new(.1), {Size = UDim2.new(0,190,0,32)}):Play()
+		if status == false then
+			if state == false then
+				state = true
+				mainStatus.Text = "+"
+				game:GetService("TweenService"):Create(main, TweenInfo.new(.1), {Size = UDim2.new(0,190,0,MainSize)}):Play()
+			elseif state == true then
+				state = false
+				mainStatus.Text = "-"
+				game:GetService("TweenService"):Create(main, TweenInfo.new(.1), {Size = UDim2.new(0,190,0,32)}):Play()
+			end
 		end
 	end
 	
@@ -280,7 +272,6 @@ lib["CreateWindow"] = function(title, accent)
 		dropdown.Position = UDim2.new(0.0289473683, 0, 0.439024389, 0)
 		dropdown.Size = UDim2.new(0, 179, 0, 20)
 		dropdown.ClipsDescendants = true
-		dropdown.ZIndex = 5555555
 
 		dropdownState.Name = "dropdownState"
 		dropdownState.Parent = dropdown
@@ -342,13 +333,15 @@ lib["CreateWindow"] = function(title, accent)
 			if isDropped then
 				isDropped = false
 				main.ClipsDescendants = true
+				status = false
 				dropdown.Size = UDim2.new(0,179,0,20)
 				dropdownState.Text = "^"
 			else
 				isDropped = true
 				main.ClipsDescendants = false
-				dropdown.Size = UDim2.new(0,179,0, dropYSize)
+				dropdown.Size = UDim2.new(0,179,0, dropYSize + 20)
 				dropdownState.Text = "v"
+				status = true
 			end
 		end)
 
@@ -395,13 +388,15 @@ lib["CreateWindow"] = function(title, accent)
 			
 			dropYSize = dropYSize + 20
 			
-			optionButton.MouseButton1Click:Connect(function()
+			local function fire()
 				dropdownDefault.Text = v
 				callback(v)
-			end)
+			end
+			
+			optionButton.MouseButton1Click:Connect(fire)
 		end
 	end
-
+	
 	return control
 end
 
