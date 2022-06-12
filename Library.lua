@@ -12,6 +12,8 @@ lib["CreateWindow"] = function(title, accent)
 	
 	local MainSize = 0
 	
+	warn(title.. " Loaded!")
+	
 	local function resize(val)
 		MainSize = MainSize + val
 	end
