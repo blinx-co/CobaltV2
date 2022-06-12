@@ -18,7 +18,7 @@ lib["CreateWindow"] = function(title, accent)
 	
 	resize(32)
 	
-	cName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
+	cName = title or "Library"
 	
 	cobalt.Name = cName
 	cobalt.Parent = game.CoreGui
@@ -53,7 +53,7 @@ lib["CreateWindow"] = function(title, accent)
 	mainTitle.Size = UDim2.new(0, 190, 0, 32)
 	mainTitle.Font = Enum.Font.Code
 	mainTitle.LineHeight = 0.900
-	mainTitle.Text = title
+	mainTitle.Text = cName
 	mainTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	mainTitle.TextSize = 20.000
 
