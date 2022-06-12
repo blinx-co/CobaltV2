@@ -47,7 +47,7 @@ lib["CreateWindow"] = function(title, accent)
 	mainTitle.LineHeight = 0.900
 	mainTitle.Text = title
 	mainTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-	mainTitle.TextSize = 17.000
+	mainTitle.TextSize = 20.000
 
 	mainAccent.Name = "mainAccent"
 	mainAccent.Parent = mainTitle
@@ -169,57 +169,6 @@ lib["CreateWindow"] = function(title, accent)
 		buttonLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	end
 	
-	control["CreateTextBox"] = function(title, callback)
-		local textbox = Instance.new("Frame")
-		local textboxMain = Instance.new("Frame")
-		local textboxMainText = Instance.new("TextBox")
-		local textboxMainTextPadding = Instance.new("UIPadding")
-		local textBoxLayout = Instance.new("UIListLayout")
-		
-		callback = callback or function() end
-		
-		textbox.Name = "textbox"
-		textbox.Parent = main
-		textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		textbox.BackgroundTransparency = 1.000
-		textbox.Position = UDim2.new(0.236842111, 0, 0.6195122, 0)
-		textbox.Size = UDim2.new(1, 0, 0, 29)
-
-		textboxMain.Name = "textboxMain"
-		textboxMain.Parent = textbox
-		textboxMain.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
-		textboxMain.BorderColor3 = Color3.fromRGB(56, 56, 56)
-		textboxMain.Size = UDim2.new(0, 179, 0, 20)
-
-		textboxMainText.Name = "textboxMainText"
-		textboxMainText.Parent = textboxMain
-		textboxMainText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		textboxMainText.BackgroundTransparency = 1.000
-		textboxMainText.Size = UDim2.new(0, 179, 0, 20)
-		textboxMainText.Font = Enum.Font.SourceSans
-		textboxMainText.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-		textboxMainText.PlaceholderText = title
-		textboxMainText.Text = ""
-		textboxMainText.TextColor3 = Color3.fromRGB(178, 178, 178)
-		textboxMainText.TextSize = 14.000
-		textboxMainText.TextXAlignment = Enum.TextXAlignment.Left
-
-		textboxMainTextPadding.Name = "textboxMainTextPadding"
-		textboxMainTextPadding.Parent = textboxMainText
-		textboxMainTextPadding.PaddingLeft = UDim.new(0, 5)
-		
-		textBoxLayout.Name = "buttonLayout"
-		textBoxLayout.Parent = textbox
-		textBoxLayout.FillDirection = Enum.FillDirection.Horizontal
-		textBoxLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		textBoxLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-		textboxMainText.FocusLost:Connect(function(ent)
-			if ent then
-				pcall(callback, textboxMainText.Text)
-			end
-		end)
-	end
-	
 	control["CreateToggle"] = function(text, callback)
 		local actions = {}
 		local callback = callback or function() end
@@ -299,12 +248,65 @@ lib["CreateWindow"] = function(title, accent)
 		toggleBoxActivator.MouseButton1Click:Connect(fire)
 	end
 	
+	control["CreateTextBox"] = function(title, callback)
+		local textbox = Instance.new("Frame")
+		local textboxMain = Instance.new("Frame")
+		local textboxMainText = Instance.new("TextBox")
+		local textboxMainTextPadding = Instance.new("UIPadding")
+		local textBoxLayout = Instance.new("UIListLayout")
+		
+		resize(29)
+		
+		callback = callback or function() end
+		
+		textbox.Name = "textbox"
+		textbox.Parent = main
+		textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		textbox.BackgroundTransparency = 1.000
+		textbox.Position = UDim2.new(0.236842111, 0, 0.6195122, 0)
+		textbox.Size = UDim2.new(1, 0, 0, 29)
+
+		textboxMain.Name = "textboxMain"
+		textboxMain.Parent = textbox
+		textboxMain.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
+		textboxMain.BorderColor3 = Color3.fromRGB(56, 56, 56)
+		textboxMain.Size = UDim2.new(0, 179, 0, 20)
+
+		textboxMainText.Name = "textboxMainText"
+		textboxMainText.Parent = textboxMain
+		textboxMainText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		textboxMainText.BackgroundTransparency = 1.000
+		textboxMainText.Size = UDim2.new(0, 179, 0, 20)
+		textboxMainText.Font = Enum.Font.SourceSans
+		textboxMainText.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+		textboxMainText.PlaceholderText = title
+		textboxMainText.Text = ""
+		textboxMainText.TextColor3 = Color3.fromRGB(178, 178, 178)
+		textboxMainText.TextSize = 14.000
+		textboxMainText.TextXAlignment = Enum.TextXAlignment.Left
+
+		textboxMainTextPadding.Name = "textboxMainTextPadding"
+		textboxMainTextPadding.Parent = textboxMainText
+		textboxMainTextPadding.PaddingLeft = UDim.new(0, 5)
+		
+		textBoxLayout.Name = "buttonLayout"
+		textBoxLayout.Parent = textbox
+		textBoxLayout.FillDirection = Enum.FillDirection.Horizontal
+		textBoxLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		textBoxLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+		textboxMainText.FocusLost:Connect(function(ent)
+			if ent then
+				pcall(callback, textboxMainText.Text)
+			end
+		end)
+	end
+	
 	control["CreateDropdown"] = function(text, list, callback)
 		callback = callback or function() end
 		list = list or {}
 		text = text or ""
 		
-		resize(30)
+		resize(29)
 		
 		local dropYSize = 0
 		local isDropped = false
