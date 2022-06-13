@@ -26,10 +26,7 @@ end
 function doRebirth(amount)
     spawn(function()
         while rebirth == true do
-            local args = {
-                [1] = amount
-            }
-            p.RebirthService.BuyRebirths:FireServer(unpack(args))
+            p.RebirthService.BuyRebirths:FireServer(amount)
             wait()
         end
     end)
@@ -55,11 +52,17 @@ win.CreateToggle("Auto Tap", function(bool)
     end
 end)
 
+local rValue = 1000
+
 win.CreateToggle("Auto Rebirth", function(bool)
     getgenv().rebirth = bool
     if bool then
-        doRebirth()
+        doRebirth(rValue)
     end
+end)
+
+win.CreateTextBox("Rebirth Amount", function(b)
+    rValue = b
 end)
 
 win.CreateToggle("Auto Hatch", function(bool)
