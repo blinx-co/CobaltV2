@@ -1,6 +1,6 @@
 local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/blinx-co/CobaltV2/main/Library.lua', true))()
 
-local win = lib.CreateWindow("ClickingMadness", Color3.fromRGB(25,65,188))
+local win = lib.CreateWindow("ClickingMadness","Synapse")
 local p = game:GetService("ReplicatedStorage").Aero.AeroRemoteServices
 
 getgenv().tap = false
