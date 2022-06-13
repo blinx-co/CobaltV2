@@ -1,6 +1,6 @@
 local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/blinx-co/CobaltV2/main/Library.lua', true))()
 
-local win = lib.CreateWindow("GymTraining", Color3.fromRGB(125,28,25))
+local win = lib.CreateWindow("GymTraining", "Synapse")
 local vu = game:GetService("VirtualUser")
 
 getgenv().energy = false
