@@ -9,7 +9,10 @@ lib["CreateWindow"] = function(title, themeList)
 	local mainStatus = Instance.new("TextLabel")
 	local mainStatusPadding = Instance.new("UIPadding")
 	local mainStatusButton = Instance.new("TextButton")
-
+	
+	local s = {}
+	table.insert(s,"test")
+	
 	local MainSize = 0
 
 	local theme = {
