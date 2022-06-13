@@ -1,0 +1,53 @@
+local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/blinx-co/CobaltV2/main/Library.lua', true))()
+
+local win = lib.CreateWindow("PSX", "Synapse")
+
+function teleportTo(a)
+    local plr = game.Players.LocalPlayer;
+    if plr.Character then
+        plr.Character.HumanoidRootPart.CFrame = a;
+    end
+end
+
+function teleportToWorld(worldName)
+    if game:GetService("Workspace")["__MAP"].Teleports(worldName) then
+        teleportTo(game:GetService("Workspace")["__MAP"].Teleports[worldName].CFrame)
+    end
+end
+
+win.CreateButton("Quit", function()
+    win.DestroyGui()
+end)
+
+win.CreateDropdown("Teleport",
+    {"Enchanted Forest", "Fantasy Portals", "Fantasy Shop", "Ancient Island", "Samurai Island", "Candy Island",
+     "Haunted House", "Hell Island", "Heaven Island", "Heavens Gate"}, function(a)
+        local plr = game.Players.LocalPlayer
+        plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["__MAP"].Teleports[a].CFrame
+    end)
+local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/blinx-co/CobaltV2/main/Library.lua', true))()
+
+local win = lib.CreateWindow("PSX", "Synapse")
+
+function teleportTo(a)
+    local plr = game.Players.LocalPlayer;
+    if plr.Character then
+        plr.Character.HumanoidRootPart.CFrame = a;
+    end
+end
+
+function teleportToWorld(worldName)
+    if game:GetService("Workspace")["__MAP"].Teleports(worldName) then
+        teleportTo(game:GetService("Workspace")["__MAP"].Teleports[worldName].CFrame)
+    end
+end
+
+
+win.CreateButton("Quit", function()
+    win.DestroyGui()
+end)
+
+win.CreateDropdown("Teleport", {"Enchanted Forest","Fantasy Portals","Fantasy Shop","Ancient Island","Samurai Island","Candy Island","Haunted Island","Hell Island","Heaven Island","Heavens Gate"}, function(a)
+    local plr = game.Players.LocalPlayer
+    plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["__MAP"].Teleports[a].CFrame
+end)
