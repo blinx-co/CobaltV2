@@ -545,5 +545,5 @@ lib["CreateWindow"] = function(title, themeList)
 		return themeStyles
 	end
 	return control
-
+end
 return lib
